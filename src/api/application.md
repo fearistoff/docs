@@ -2,21 +2,21 @@
 
 ## createApp()
 
-Creates an application instance.
+Создаёт экземпляр приложения.
 
-- **Type**
+- **Тип**
 
   ```ts
   function createApp(rootComponent: Component, rootProps?: object): App
   ```
 
-- **Details**
+- **Подробности**
 
-  The first argument is the root component. The second optional argument is the props to be passed to the root component.
+  Первый аргумент - это корневой компонент. Второй аргумент - это параметры, которые применятся к корневому компоненту.
 
-- **Example**
+- **Пример**
 
-  With inline root component:
+  Со встроенным корневым компонентом:
 
   ```js
   import { createApp } from 'vue'
@@ -26,7 +26,7 @@ Creates an application instance.
   })
   ```
 
-  With imported component:
+  С импортируемым компонентом:
 
   ```js
   import { createApp } from 'vue'
@@ -35,17 +35,17 @@ Creates an application instance.
   const app = createApp(App)
   ```
 
-- **See also:** [Guide - Creating a Vue Application](/guide/essentials/application.html)
+- **См. также:** [Гайд - создание Vue Приложения](/guide/essentials/application.html)
 
 ## createSSRApp()
 
-Creates an application instance in [SSR Hydration](/guide/scaling-up/ssr.html#client-hydration) mode. Usage is exactly the same as `createApp()`.
+Создаёт экземпляр приложения для режима [SSR Гидратации](/guide/scaling-up/ssr.html#client-hydration). Использование полностью повторяет использование `createApp()`.
 
 ## app.mount()
 
-Mounts the application instance in a container element.
+Навешивает экземпляр приложения в элемент-контейнер.
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
@@ -53,17 +53,17 @@ Mounts the application instance in a container element.
   }
   ```
 
-- **Details**
+- **Подробности**
 
-  The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
+  Аргумент может быть как самим элементом DOM-дерева или CSS-селектором на него (использоваться будет первое совпадение). Возвращает экземпляр корневого приложения.
 
-  If the component has a template or a render function defined, it will replace any existing DOM nodes inside the container. Otherwise, if the runtime compiler is available, the `innerHTML` of the container will be used as the template.
+  Если у компонента есть шаблон или объявлена функция рендера, он заменит всё содержимое DOM-дерева внутри контейнера. Иначе, если доступен рантайм компилятор, за шаблон контейнера будет использован шаблон из `innerHTML`.
 
-  In SSR hydration mode, it will hydrate the existing DOM nodes inside the container. If there are [mismatches](/guide/scaling-up/ssr.html#hydration-mismatch), the existing DOM nodes will be morphed to match the expected output.
+  В режиме SSR Гидратации, он гидрирует существующие элементы DOM-дерева внутри контейнера. Если будут некоторые [различия](/guide/scaling-up/ssr.html#hydration-mismatch), то существующие элементы DOM-дерева будут трансформированы, чтобы совпадать с ожидаемым результатом.
 
-  For each app instance, `mount()` can only be called once.
+  Для каждого экземпляра приложения, `mount()` может быть вызван лишь один раз.
 
-- **Example**
+- **Пример**
 
   ```js
   import { createApp } from 'vue'
@@ -72,7 +72,7 @@ Mounts the application instance in a container element.
   app.mount('#app')
   ```
 
-  Can also mount to an actual DOM element:
+  Также можно указать сам элементом DOM-дерева:
 
   ```js
   app.mount(document.body.firstChild)
@@ -80,9 +80,9 @@ Mounts the application instance in a container element.
 
 ## app.unmount()
 
-Unmounts a mounted application instance, triggering the unmount lifecycle hooks for all components in the application's component tree.
+Снимает навешивание экземпляр приложения, вызывая соответствующее событие жизненного цикла для всех компонентов этого внутри приложения.
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
@@ -92,9 +92,9 @@ Unmounts a mounted application instance, triggering the unmount lifecycle hooks 
 
 ## app.provide()
 
-Provide a value that can be injected in all descendent components within the application.
+Указывает значение, которое будет встроено во все дочерние компоненты приложения.
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
@@ -102,11 +102,11 @@ Provide a value that can be injected in all descendent components within the app
   }
   ```
 
-- **Details**
+- **Подробности**
 
-  Expects the injection key as the first argument, and the provided value as the second. Returns the application instance itself.
+  Первым параметром ожидается ключ встраиваемого значения, а вторым - само значение. Возвращает сам экземпляр приложения.
 
-- **Example**
+- **Пример**
 
   ```js
   import { createApp } from 'vue'
@@ -116,7 +116,7 @@ Provide a value that can be injected in all descendent components within the app
   app.provide('message', 'hello')
   ```
 
-  Inside a component in the application:
+  Использование внутри компонента:
 
   <div class="composition-api">
 
@@ -144,15 +144,15 @@ Provide a value that can be injected in all descendent components within the app
 
   </div>
 
-- **See also:**
+- **См. также:**
   - [Provide / Inject](/guide/components/provide-inject.html)
-  - [App-level Provide](/guide/components/provide-inject.html#app-level-provide)
+  - [Provide на уровне приложения](/guide/components/provide-inject.html#app-level-provide)
 
 ## app.component()
 
-Registers a global component if passing both a name string and a component definition, or retrieves an already registered one if only the name is passed.
+Регистрирует глобальный компонент если переданы и название в виде строки и описание компонента, или извлекает уже существующий компонент если отправлено только имя. 
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
@@ -161,29 +161,29 @@ Registers a global component if passing both a name string and a component defin
   }
   ```
 
-- **Example**
+- **Пример**
 
   ```js
   import { createApp } from 'vue'
 
   const app = createApp({})
 
-  // register an options object
+  // регистрация параметров объекта
   app.component('my-component', {
     /* ... */
   })
 
-  // retrieve a registered component
+  // извлечение уже существующего компонента
   const MyComponent = app.component('my-component')
   ```
 
-- **See also:** [Component Registration](/guide/components/registration.html)
+- **См. также:** [Регистрация компонентов](/guide/components/registration.html)
 
 ## app.directive()
 
-Registers a global custom directive if passing both a name string and a directive definition, or retrieves an already registered one if only the name is passed.
+Регистрирует глобальную стороннюю директиву если переданы и название в виде строки и описание директивы, или извлекает уже существующую директиву если отправлено только имя.
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
@@ -192,7 +192,7 @@ Registers a global custom directive if passing both a name string and a directiv
   }
   ```
 
-- **Example**
+- **Пример**
 
   ```js
   import { createApp } from 'vue'
@@ -201,27 +201,27 @@ Registers a global custom directive if passing both a name string and a directiv
     /* ... */
   })
 
-  // register (object directive)
+  // регистрация (объект директивы)
   app.directive('my-directive', {
-    /* custom directive hooks */
+    /* события жизненного цикла директивы */
   })
 
-  // register (function directive shorthand)
+  // регистрация (сокращение до функции директивы)
   app.directive('my-directive', () => {
     /* ... */
   })
 
-  // retrieve a registered directive
+  // извлечение уже существующей директивы
   const myDirective = app.directive('my-directive')
   ```
 
-- **See also:** [Custom Directives](/guide/reusability/custom-directives.html)
+- **См. также:** [Сторонние директивы](/guide/reusability/custom-directives.html)
 
 ## app.use()
 
-Installs a [plugin](/guide/reusability/plugins.html).
+Устанавливает [плагин](/guide/reusability/plugins.html).
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
@@ -229,15 +229,15 @@ Installs a [plugin](/guide/reusability/plugins.html).
   }
   ```
 
-- **Details**
+- **Подробности**
 
-  Expects the plugin as the first argument, and optional plugin options as the second argument.
+  Первым аргументом принимает сам плагин, а во втором опциональном - его параметры.
 
-  The plugin can either be an object with an `install()` method, or just a function that will be used as the `install()` method. The options (second argument of `app.use()`) will be passed along to the plugin's `install()` method.
+  Плагин может быть объектом с методом `install()` внутри или просто функцией, которая будет использована как метод `install()`. Параметры (второй аргумент `app.use()`) будут вставлены рядом с методом `install()` плагина.
 
-  When `app.use()` is called on the same plugin multiple times, the plugin will be installed only once.
+  Когда вызывается `app.use()` для одного и того же плагина он будет установлен только один раз.
 
-- **Example**
+- **Пример**
 
   ```js
   import { createApp } from 'vue'
@@ -250,19 +250,20 @@ Installs a [plugin](/guide/reusability/plugins.html).
   app.use(MyPlugin)
   ```
 
-- **See also:** [Plugins](/guide/reusability/plugins.html)
+- **См. также:** [Плагины](/guide/reusability/plugins.html)
 
 ## app.mixin()
 
-Applies a global mixin (scoped to the application). A global mixin applies its included options to every component instance in the application.
+Применяет глобальный миксин (в области видимости приложения). Глобальные миксины применяются к встроенным параметрам для каждого компонента в приложении.
 
-:::warning Not Recommended
+:::warning Не рекомендован
 Mixins are supported in Vue 3 mainly for backwards compatibility, due to their widespread use in ecosystem libraries. Use of mixins, especially global mixins, should be avoided in application code.
+Миксины поддерживаются во Vue 3 в основном для обратной совместимости из-за их широкого использования в экосистемных библиотеках. Использование миксинов, особенно глобальных миксинов, рекомендуем избегать.
 
-For logic reuse, prefer [Composables](/guide/reusability/composables.html) instead.
+Для повторного использования логики, пользуйтесь [Составными](/guide/reusability/composables.html) функциями.
 :::
 
-- **Type**
+- **Тип**
 
   ```ts
   interface App {
